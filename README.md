@@ -24,7 +24,7 @@ Requirements
 This app requires zarafa's php-mapi plugin.
 The mapi includes have to be available through include paths.
 
-Note: If you have the Zarafa WebApp running on the same server as owncloud you should be fine to go!
+**Note**: If you have the Zarafa WebApp running on the same server as owncloud you should be fine to go!
 
 Configuration
 -------------
