@@ -12,8 +12,8 @@ Features
 * User Authentication against Zarafa
 * Simple Integration of the Zarafa WebApp into owncloud
 
-What it can't do (yet?)
------------------------
+Limitations
+-----------
 
 * Currently only single company zarafa setups with the default store being the right one (everything else has neither been tested nor is it supposed to work)
 * Changing passwords of or deleting zarafa users via owncloud does not work
