@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<info>
+       <id>zarafa</id>
+       <name>Zarafa Integration</name>
+       <description>Integrates Zarafa User Authentication and WebApp</description>
+       <licence>AGPL</licence>
+       <author>Stephan Reichholf &lt;stephan@reichholf.net&gt;</author>
+       <require>4</require>
+       <shipped>false</shipped>
+       <types>
+               <authentication/>
+       </types>
+</info>
