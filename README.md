@@ -31,8 +31,9 @@ Configuration
 * Login to your owncloud installation using any admin user.
 * Enable the plugin and go to the system settings.
 * There you will have to configure
-** The Socket to connect to zarafa, this can be a file:// or http(s):// style socket.
-** A valid zarafa user so the plugin can get the list of users
+    * The Socket to connect to zarafa, this can be a file:// or http(s):// style socket.
+    * A valid zarafa user so the plugin can get the list of users (if anyone has a suggestion on how to get rid of this, tell me!)
+    * The url to your WebApp (it will be loaded into an iframe)
 
 Usage
 -----
