@@ -98,7 +98,7 @@ class OC_USER_ZARAFA extends OC_User_Backend {
 		return $uid;
         }
 
-	public function deleteUser(){
+	public function deleteUser($uid){
 		OC_Log::write('OC_USER_ZARAFA', 'Not possible to delete zarafa users from web frontend', 3);
 		return false;
 	}
@@ -108,7 +108,7 @@ class OC_USER_ZARAFA extends OC_User_Backend {
 		return false;
 	}
 
-	public function getUsers(){
+	public function getUsers($search = '', $limit = 10, $offset = 0){
 		if(count($this->zarafa_users) == 0){
 			$this->zarafa_users = array();
 			$userList = array();
@@ -121,7 +121,19 @@ class OC_USER_ZARAFA extends OC_User_Backend {
 				array_push($this->zarafa_users, $userName);
 			}
 		}
-		return $this->zarafa_users;
+		$zarafa_users = $this->zarafa_users;
+		$this->userSearch = $search;
+		if(!empty($this->userSearch)) {
+			$zarafa_users = array_filter($zarafa_users, array($this, 'userMatchesFilter'));
+		}
+		if($limit == -1) {
+			$limit = null;
+		}
+		return array_slice($zarafa_users, $offset, $limit);
+	}
+
+	public function userMatchesFilter($user) {
+		return (strripos($user, $this->userSearch) !== false);
 	}
 
 	public function userExists($uid){
