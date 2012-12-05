@@ -8,11 +8,6 @@ require_once('apps/zarafa/user_zarafa.php');
 $l=new OC_L10N('zarafa');
 
 OCP\App::registerAdmin('zarafa','settings');
-OC_App::register( array(
-	'order' => 50,
-	'id' => 'zarafa',
-	'name' => 'Zarafa WebApp' )
-);
 
 // define Zarafa defaults
 define('OC_APP_ZARAFA_DEFAULT_SERVER', 'file:///var/run/zarafa');
