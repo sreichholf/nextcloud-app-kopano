@@ -5,7 +5,7 @@
        <description>Integrates Zarafa User Authentication and WebApp</description>
        <licence>AGPL</licence>
        <author>Stephan Reichholf &lt;stephan@reichholf.net&gt;</author>
-       <require>4</require>
+       <require>4.9</require>
        <shipped>false</shipped>
        <types>
                <authentication/>
