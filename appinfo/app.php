@@ -20,7 +20,7 @@ OC_App::addNavigationEntry( array(
     'order' => 10,
     'href' => OC_Helper::linkTo('zarafa', 'index.php'),
     'icon' => OC_Helper::imagePath( 'zarafa', 'zarafa.png' ),
-    'name' => $l->t('Zarafa WebApp'))
+    'name' => $l->t('Zarafa'))
 );
 
 // register user backend
