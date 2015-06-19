@@ -24,16 +24,13 @@
 require_once('lib/base.php');
 
 // Check if we are a user
-if( !OC_User::isLoggedIn()){
-	header( "Location: ".OC_Helper::linkTo( '', 'index.php' ));
-	exit();
-}
+OCP\User::checkLoggedIn();
+OCP\App::checkAppEnabled('zarafa');
+OCP\App::setActiveNavigationEntry( 'zarafa_index' );
 
+$tmpl = new OCP\Template( 'zarafa', 'frame', 'user' );
 $url = OCP\Config::getAppValue('zarafa', 'zarafa_webapp_url', OC_APP_ZARAFA_DEFAULT_WEBAPP_URL);
-OC_App::setActiveNavigationEntry( 'zarafa_index' );
-
-$tmpl = new OC_Template( 'zarafa', 'frame', 'user' );
-$tmpl->assign('url',$url);
+$tmpl->assign('url', $url);
 $tmpl->printPage();
 
 ?>
