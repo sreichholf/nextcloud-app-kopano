@@ -18,9 +18,9 @@ class OC_USER_ZARAFA extends OC_User_Backend {
 	protected $zarafa_user_pass;
 
 	function __construct() {
-		$this->zarafa_server = OC_Appconfig::getValue('zarafa', 'zarafa_server', OC_APP_ZARAFA_DEFAULT_SERVER);
-		$this->zarafa_user_name = OC_Appconfig::getValue('zarafa', 'zarafa_user_name', OC_APP_ZARAFA_DEFAULT_USER_NAME);
-		$this->zarafa_user_pass = OC_Appconfig::getValue('zarafa', 'zarafa_user_pass', OC_APP_ZARAFA_DEFAULT_USER_PASS);
+		$this->zarafa_server = \OCP\Config::getAppValue('zarafa', 'zarafa_server', OC_APP_ZARAFA_DEFAULT_SERVER);
+		$this->zarafa_user_name = \OCP\Config::getAppValue('zarafa', 'zarafa_user_name', OC_APP_ZARAFA_DEFAULT_USER_NAME);
+		$this->zarafa_user_pass = \OCP\Config::getAppValue('zarafa', 'zarafa_user_pass', OC_APP_ZARAFA_DEFAULT_USER_PASS);
 	}
 
 	private function getZarafaSession(){
