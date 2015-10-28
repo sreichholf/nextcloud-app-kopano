@@ -1,4 +1,4 @@
-<?php
+OS<?php
 
 /**
  * ownCloud - zarafa
@@ -18,16 +18,16 @@ class OC_USER_ZARAFA extends OC_User_Backend {
 	protected $zarafa_user_pass;
 
 	function __construct() {
-		$this->zarafa_server = \OCP\Config::getAppValue('zarafa', 'zarafa_server', OC_APP_ZARAFA_DEFAULT_SERVER);
-		$this->zarafa_user_name = \OCP\Config::getAppValue('zarafa', 'zarafa_user_name', OC_APP_ZARAFA_DEFAULT_USER_NAME);
-		$this->zarafa_user_pass = \OCP\Config::getAppValue('zarafa', 'zarafa_user_pass', OC_APP_ZARAFA_DEFAULT_USER_PASS);
+		$this->zarafa_server = OCP\Config::getAppValue('zarafa', 'zarafa_server', OC_APP_ZARAFA_DEFAULT_SERVER);
+		$this->zarafa_user_name = OCP\Config::getAppValue('zarafa', 'zarafa_user_name', OC_APP_ZARAFA_DEFAULT_USER_NAME);
+		$this->zarafa_user_pass = OCP\Config::getAppValue('zarafa', 'zarafa_user_pass', OC_APP_ZARAFA_DEFAULT_USER_PASS);
 	}
 
 	private function getZarafaSession(){
 		$this->zarafa_session = mapi_logon_zarafa($this->zarafa_user_name, $this->zarafa_user_pass, $this->zarafa_server, NULL, NULL);
 		if($this->zarafa_session)
 			return true;
-		OC_Log::write('OC_USER_ZARAFA', "Cannot get zarafa session", 3);
+		OCP\Util::writeLog('OC_USER_ZARAFA', "Cannot get zarafa session", 3);
 		return false;
 	}
 
@@ -43,13 +43,13 @@ class OC_USER_ZARAFA extends OC_User_Backend {
 					}
 				}
 				if(!$storeEntryId){
-					OC_Log::write('OC_USER_ZARAFA', "Cannot get message store id", 3);
+					OCP\Util::writeLog('OC_USER_ZARAFA', "Cannot get message store id", 3);
 					return false;
 				}
 				$this->zarafa_store = mapi_openmsgstore($this->zarafa_session, $storeEntryId);
 			}
 			if(!$this->zarafa_store){
-				OC_Log::write('OC_USER_ZARAFA', "Cannot get message store with id ($storeEntryId)", 3);
+				OCP\Util::writeLog('OC_USER_ZARAFA', "Cannot get message store with id ($storeEntryId)", 3);
 				return false;
 			}
 			return true;
@@ -70,7 +70,7 @@ class OC_USER_ZARAFA extends OC_User_Backend {
 	public function checkPassword($uid, $password){
 		$session = mapi_logon_zarafa($uid, $password);
 		if(!$session){
-			OC_Log::write('OC_USER_ZARAFA', "Logon failed for '$uid'", 3);
+			OCP\Util::writeLog('OC_USER_ZARAFA', "Logon failed for '$uid'", 3);
 			return false;
 		}
 
@@ -89,9 +89,9 @@ class OC_USER_ZARAFA extends OC_User_Backend {
 				$info = mapi_zarafa_getuser($store, $uid);
 				if($info){
 					$email = $info["emailaddress"];
-					\OCP\Config::setUserValue($uid, 'settings', 'email', $email);
+					OCP\Config::setUserValue($uid, 'settings', 'email', $email);
 				} else {
-					OC_Log::write('OC_USER_ZARAFA', "Error getting user info for $uid", 3);
+					OCP\Util::writeLog('OC_USER_ZARAFA', "Error getting user info for $uid", 3);
 				}
 			}
 		}
@@ -99,12 +99,12 @@ class OC_USER_ZARAFA extends OC_User_Backend {
         }
 
 	public function deleteUser($uid){
-		OC_Log::write('OC_USER_ZARAFA', 'Not possible to delete zarafa users from web frontend', 3);
+		OCP\Util::writeLog('OC_USER_ZARAFA', 'Not possible to delete zarafa users from web frontend', 3);
 		return false;
 	}
 
 	public function setPassword ( $uid, $password ) {
-		OC_Log::write('OC_USER_ZARAFA', 'Setting user password from web frontend using zarafa user backend ist not implemented', 3);
+		OCP\Util::writeLog('OC_USER_ZARAFA', 'Setting user password from web frontend using zarafa user backend ist not implemented', 3);
 		return false;
 	}
 
@@ -140,7 +140,7 @@ class OC_USER_ZARAFA extends OC_User_Backend {
 		$users = $this->getUsers();
 		$exists = in_array($uid, $users);
 		if(!$exists){
-			OC_Log::write('OC_USER_ZARAFA', "User '$uid' does not exist!", 3 );
+			OCP\Util::writeLog('OC_USER_ZARAFA', "User '$uid' does not exist!", 3 );
 			return false;
 		}
 		return true;
