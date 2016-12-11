@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <info>
-       <id>zarafa</id>
-       <name>Zarafa Integration</name>
-       <description>Integrates Zarafa User Authentication and WebApp</description>
+       <id>kopano</id>
+       <name>Kopano Integration</name>
+       <description>Integrates Kopano User Authentication and WebApp</description>
        <licence>AGPL</licence>
        <author>Stephan Reichholf &lt;stephan@reichholf.net&gt;</author>
        <dependencies>
-           <owncloud min-version="8.1" />
+           <nextcloud min-version="9" />
        </dependencies>
        <shipped>false</shipped>
-       <version>0.5</version>
+       <version>1.0</version>
        <types>
                <authentication/>
        </types>
